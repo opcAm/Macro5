@@ -102,5 +102,5 @@ class FutureViewController: UIViewController {
 }
 
 #Preview(){
-    return FutureViewController()
+    MainTabBarController()
 }

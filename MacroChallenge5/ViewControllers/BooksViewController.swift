@@ -12,7 +12,7 @@ class BooksViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "book view"
+        title = "Livros"
         view.backgroundColor = .background
     }
 }

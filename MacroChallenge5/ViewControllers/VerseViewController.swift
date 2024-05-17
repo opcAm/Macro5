@@ -9,56 +9,35 @@ import UIKit
 
 class VerseViewController: UIViewController {
     
-    let buttonMore: UIButton = {
-        let button = UIButton()
-        
-        button.setImage(UIImage(systemName: "plus.app"), for: .normal)
-        button.tintColor = .orangee
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
-    }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-    view.backgroundColor = .background
-            setElements()
-    }
-    func setElements() {
-        setButtonPlus()
-    }
 
-    func setButtonPlus() {
-        self.view.addSubview(buttonMore)
+        view.backgroundColor = .background
+        let button = UIButton (configuration: .filled(),primaryAction: .init(handler: { _ in
+            
+            let storyboard = UIStoryboard(name: "Sheet", bundle: nil)
+            let sheetPresentationController = storyboard.instantiateViewController(withIdentifier: "SheetViewController") as! SheetViewController
+            self.present(sheetPresentationController, animated: true)
+        }))
+//        button.setImage(UIImage(systemName: "plus.app"), for: .normal)
+        button.setTitle("TESTE", for: .normal)
+        button.tintColor = .orangee
+        button.configuration?.cornerStyle = .capsule
+        view.addSubview(button)
         
-        buttonMore.addTarget(self, action: #selector(navigate), for: .touchUpInside)
-        
-        NSLayoutConstraint.activate([
-            buttonMore.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 70),
-            buttonMore.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20)
-//            buttonMore.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 340)
-        ])
+        //constraints
+        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.topAnchor.constraint(equalTo: view.topAnchor, constant: 70).isActive = true
+//        button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 355).isActive = true
+//        button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
+        button.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        button.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
     }
     
-//    private func configureSheet() {
-//        let vc = SheetViewController()
-//        let navVC = UINavigationController(rootViewController: vc)
-//        
-//        navVC.isModalInPresentation = true
-//        if let sheet = navVC.sheetPresentationController{
-//            sheet.detents = [.custom(resolver: { context in
-//                0.2 * context.maximumDetentValue
-//            }),.custom(resolver: { context in
-//                0.2 * context.maximumDetentValue
-//            })]
-//            sheet.largestUndimmedDetentIdentifier = .medium
-//        }
-//        navigationController?.present(navVC, animated: true)
-//    }
-    @objc func navigate() {
-        navigationController?.pushViewController(SheetViewController(), animated: true)
-    }
+}
+#Preview(){
+    VerseViewController()
 }

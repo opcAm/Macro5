@@ -13,12 +13,12 @@ class SheetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .background
+        view.largeContentTitle = "Sheet"
 
     }
     
-        
 }
 
 #Preview(){
-    SheetViewController()
+    MainTabBarController()
 }
