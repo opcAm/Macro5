@@ -21,6 +21,7 @@
 		BA8736A92BF3E2D8006F2246 /* MaliSemibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA87369D2BF3E2D8006F2246 /* MaliSemibold.ttf */; };
 		BAEA64C12BF691B2004D0FBA /* MaliBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA8736942BF3E2D8006F2246 /* MaliBold.ttf */; };
 		BAEA64C32BF69419004D0FBA /* SheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEA64C22BF69419004D0FBA /* SheetViewController.swift */; };
+		BAEA64C52BFBA718004D0FBA /* VerseSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEA64C42BFBA718004D0FBA /* VerseSheetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		BA87369A2BF3E2D8006F2246 /* MaliRegular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaliRegular.ttf; sourceTree = "<group>"; };
 		BA87369D2BF3E2D8006F2246 /* MaliSemibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaliSemibold.ttf; sourceTree = "<group>"; };
 		BAEA64C22BF69419004D0FBA /* SheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetViewController.swift; sourceTree = "<group>"; };
+		BAEA64C42BFBA718004D0FBA /* VerseSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerseSheetViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				BA8736912BF3E1D8006F2246 /* BooksViewController.swift */,
 				BA87368C2BF3E039006F2246 /* VerseViewController.swift */,
 				BAEA64C22BF69419004D0FBA /* SheetViewController.swift */,
+				BAEA64C42BFBA718004D0FBA /* VerseSheetViewController.swift */,
 				BA87368F2BF3E1AC006F2246 /* FutureViewController.swift */,
 			);
 			path = ViewControllers;
@@ -189,6 +192,7 @@
 				BA87367E2BF3CCAE006F2246 /* MacroChallenge5.xcdatamodeld in Sources */,
 				BA8736762BF3CCAE006F2246 /* SceneDelegate.swift in Sources */,
 				BA87368D2BF3E039006F2246 /* VerseViewController.swift in Sources */,
+				BAEA64C52BFBA718004D0FBA /* VerseSheetViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
