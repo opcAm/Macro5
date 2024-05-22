@@ -9,8 +9,15 @@ import UIKit
 
 class FutureViewController: UIViewController {
 
+    let titleFuture: UILabel = {
+        let title = UILabel()
+        title.text = "Teu tempo"
+        title.font = UIFont.boldSystemFont(ofSize: 34)
+        title.textColor = .fonte
+        title.translatesAutoresizingMaskIntoConstraints = false
+        return title
+    }()
     
-    let scrollView = UIScrollView()
     let contentView = UIView()
     
     let text01: UILabel = {
@@ -49,27 +56,18 @@ class FutureViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "future view"
         view.backgroundColor = .background
         setElements()
         
     }
     
     func setElements() {
-        setScrollView()
         setText1()
         setText2()
         setImage()
+        setTitle()
     }
-    func setScrollView () {
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(scrollView)
-        
-        scrollView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        scrollView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-    }
+    
     
     func setText1() {
         self.view.addSubview(text01)
@@ -97,6 +95,15 @@ class FutureViewController: UIViewController {
             image.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 170),
             image.bottomAnchor.constraint(equalTo: text01.topAnchor, constant: -42)
         
+        ])
+    }
+    
+    func setTitle() {
+        self.view.addSubview(titleFuture)
+        
+        NSLayoutConstraint.activate([
+            titleFuture.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            titleFuture.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
         ])
     }
 }

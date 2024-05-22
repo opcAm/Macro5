@@ -22,6 +22,12 @@
 		BAEA64C12BF691B2004D0FBA /* MaliBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA8736942BF3E2D8006F2246 /* MaliBold.ttf */; };
 		BAEA64C32BF69419004D0FBA /* SheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEA64C22BF69419004D0FBA /* SheetViewController.swift */; };
 		BAEA64C52BFBA718004D0FBA /* VerseSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEA64C42BFBA718004D0FBA /* VerseSheetViewController.swift */; };
+		BAEA64C92BFE6701004D0FBA /* MateusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEA64C82BFE6701004D0FBA /* MateusViewController.swift */; };
+		BAEA64CB2BFE670B004D0FBA /* MarcosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEA64CA2BFE670B004D0FBA /* MarcosViewController.swift */; };
+		BAEA64CD2BFE6713004D0FBA /* LucasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEA64CC2BFE6713004D0FBA /* LucasViewController.swift */; };
+		BAEA64CF2BFE6763004D0FBA /* JoaoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEA64CE2BFE6763004D0FBA /* JoaoViewController.swift */; };
+		BAEA64D12BFE7183004D0FBA /* GenesisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEA64D02BFE7183004D0FBA /* GenesisViewController.swift */; };
+		BAEA64D32BFE718C004D0FBA /* ExodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEA64D22BFE718C004D0FBA /* ExodoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +48,12 @@
 		BA87369D2BF3E2D8006F2246 /* MaliSemibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaliSemibold.ttf; sourceTree = "<group>"; };
 		BAEA64C22BF69419004D0FBA /* SheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetViewController.swift; sourceTree = "<group>"; };
 		BAEA64C42BFBA718004D0FBA /* VerseSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerseSheetViewController.swift; sourceTree = "<group>"; };
+		BAEA64C82BFE6701004D0FBA /* MateusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateusViewController.swift; sourceTree = "<group>"; };
+		BAEA64CA2BFE670B004D0FBA /* MarcosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarcosViewController.swift; sourceTree = "<group>"; };
+		BAEA64CC2BFE6713004D0FBA /* LucasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LucasViewController.swift; sourceTree = "<group>"; };
+		BAEA64CE2BFE6763004D0FBA /* JoaoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoaoViewController.swift; sourceTree = "<group>"; };
+		BAEA64D02BFE7183004D0FBA /* GenesisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenesisViewController.swift; sourceTree = "<group>"; };
+		BAEA64D22BFE718C004D0FBA /* ExodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExodoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +89,9 @@
 				BA8736732BF3CCAE006F2246 /* AppDelegate.swift */,
 				BA8736752BF3CCAE006F2246 /* SceneDelegate.swift */,
 				BA87368A2BF3D07E006F2246 /* MainTabBarController.swift */,
-				BA87368E2BF3E062006F2246 /* ViewControllers */,
+				BA87368E2BF3E062006F2246 /* ViewsPrincipais */,
+				BAEA64C62BFE65B8004D0FBA /* Sheets */,
+				BAEA64C72BFE65EA004D0FBA /* BooksLabel */,
 				BA87367F2BF3CCAF006F2246 /* Assets.xcassets */,
 				BA8736812BF3CCAF006F2246 /* LaunchScreen.storyboard */,
 				BA8736842BF3CCAF006F2246 /* Info.plist */,
@@ -87,16 +101,14 @@
 			path = MacroChallenge5;
 			sourceTree = "<group>";
 		};
-		BA87368E2BF3E062006F2246 /* ViewControllers */ = {
+		BA87368E2BF3E062006F2246 /* ViewsPrincipais */ = {
 			isa = PBXGroup;
 			children = (
 				BA8736912BF3E1D8006F2246 /* BooksViewController.swift */,
 				BA87368C2BF3E039006F2246 /* VerseViewController.swift */,
-				BAEA64C22BF69419004D0FBA /* SheetViewController.swift */,
-				BAEA64C42BFBA718004D0FBA /* VerseSheetViewController.swift */,
 				BA87368F2BF3E1AC006F2246 /* FutureViewController.swift */,
 			);
-			path = ViewControllers;
+			path = ViewsPrincipais;
 			sourceTree = "<group>";
 		};
 		BA8736AB2BF3E2E0006F2246 /* Fonts */ = {
@@ -108,6 +120,28 @@
 				BA87369D2BF3E2D8006F2246 /* MaliSemibold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		BAEA64C62BFE65B8004D0FBA /* Sheets */ = {
+			isa = PBXGroup;
+			children = (
+				BAEA64C22BF69419004D0FBA /* SheetViewController.swift */,
+				BAEA64C42BFBA718004D0FBA /* VerseSheetViewController.swift */,
+			);
+			path = Sheets;
+			sourceTree = "<group>";
+		};
+		BAEA64C72BFE65EA004D0FBA /* BooksLabel */ = {
+			isa = PBXGroup;
+			children = (
+				BAEA64C82BFE6701004D0FBA /* MateusViewController.swift */,
+				BAEA64CA2BFE670B004D0FBA /* MarcosViewController.swift */,
+				BAEA64CC2BFE6713004D0FBA /* LucasViewController.swift */,
+				BAEA64CE2BFE6763004D0FBA /* JoaoViewController.swift */,
+				BAEA64D02BFE7183004D0FBA /* GenesisViewController.swift */,
+				BAEA64D22BFE718C004D0FBA /* ExodoViewController.swift */,
+			);
+			path = BooksLabel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,14 +218,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAEA64CB2BFE670B004D0FBA /* MarcosViewController.swift in Sources */,
 				BA8736922BF3E1D8006F2246 /* BooksViewController.swift in Sources */,
 				BA8736902BF3E1AC006F2246 /* FutureViewController.swift in Sources */,
 				BA8736742BF3CCAE006F2246 /* AppDelegate.swift in Sources */,
+				BAEA64C92BFE6701004D0FBA /* MateusViewController.swift in Sources */,
 				BA87368B2BF3D07E006F2246 /* MainTabBarController.swift in Sources */,
 				BAEA64C32BF69419004D0FBA /* SheetViewController.swift in Sources */,
+				BAEA64CD2BFE6713004D0FBA /* LucasViewController.swift in Sources */,
 				BA87367E2BF3CCAE006F2246 /* MacroChallenge5.xcdatamodeld in Sources */,
+				BAEA64CF2BFE6763004D0FBA /* JoaoViewController.swift in Sources */,
 				BA8736762BF3CCAE006F2246 /* SceneDelegate.swift in Sources */,
+				BAEA64D12BFE7183004D0FBA /* GenesisViewController.swift in Sources */,
 				BA87368D2BF3E039006F2246 /* VerseViewController.swift in Sources */,
+				BAEA64D32BFE718C004D0FBA /* ExodoViewController.swift in Sources */,
 				BAEA64C52BFBA718004D0FBA /* VerseSheetViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
