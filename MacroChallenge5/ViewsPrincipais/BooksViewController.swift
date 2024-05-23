@@ -9,6 +9,11 @@ import UIKit
 
 class BooksViewController: UIViewController {
     
+
+    // Exemplo de como aplicar uma fonte customizada a um UILabel
+    
+
+    
     let matBook: UIButton = {
         let m = UIButton()
         m.setImage(UIImage(named: "0"), for: .normal)
@@ -56,9 +61,16 @@ class BooksViewController: UIViewController {
     let titleBook: UILabel = {
         let title = UILabel()
         title.text = "Livros"
-        title.font = UIFont.boldSystemFont(ofSize: 34)
+        title.font = .boldSystemFont(ofSize: 34)
         title.textColor = .fonte
         title.translatesAutoresizingMaskIntoConstraints = false
+        
+//        if let customFont = UIFont(name: "MaliBold", size: 34) {
+//            title.font = customFont
+//        }
+//        else {
+//            print("Erro ao carregar a fonte: MaliBold")
+//        }
         return title
     }()
 
@@ -84,8 +96,8 @@ class BooksViewController: UIViewController {
         self.view.addSubview(titleBook)
         
         NSLayoutConstraint.activate([
-            titleBook.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            titleBook.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+            titleBook.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            titleBook.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20)
         ])
     }
 //-----------------------------------------------------------------------------------------------------------

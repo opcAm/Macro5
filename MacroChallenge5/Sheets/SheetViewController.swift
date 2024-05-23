@@ -47,7 +47,7 @@ class SheetViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .pinkk
-            .withAlphaComponent(0.3)
+//            .withAlphaComponent(0.3)
         setElements()
     }
 //========================================================================
@@ -95,8 +95,4 @@ class SheetViewController: UIViewController {
         dismiss(animated: true, completion: nil)
         
     }
-}
-
-#Preview(){
-    MainTabBarController()
 }

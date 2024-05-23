@@ -11,7 +11,7 @@ class VerseViewController: UIViewController {
     
     var savedTexts: [(title: String, text: String)] = []
     var scrollView: UIScrollView!
-    var stackView: UIStackView!
+    var vstack: UIStackView!
     
     //========================== Mensagem se vazio ===========================
     let messageEmpty1: UILabel = {
@@ -68,22 +68,22 @@ class VerseViewController: UIViewController {
         view.addSubview(scrollView)
         
         // pros cards
-        stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(stackView)
+        vstack = UIStackView()
+        vstack.axis = .vertical
+        vstack.spacing = 10
+        vstack.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(vstack)
         
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: titleVerse.bottomAnchor, constant: 20),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+            vstack.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            vstack.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            vstack.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            vstack.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            vstack.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
         
         ifMessage()
@@ -112,7 +112,7 @@ class VerseViewController: UIViewController {
         sheetButton.addTarget(self, action: #selector(showSheet), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            sheetButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            sheetButton.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             sheetButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20)
         ])
     }
@@ -139,7 +139,7 @@ class VerseViewController: UIViewController {
             cardView.heightAnchor.constraint(equalToConstant: 50)
         ])
         
-        stackView.addArrangedSubview(cardView)
+        vstack.addArrangedSubview(cardView)
     }
     
     @objc func showSheet() {
@@ -159,7 +159,7 @@ class VerseViewController: UIViewController {
     
     @objc func showVerseSheet(_ sender: UITapGestureRecognizer) {
         guard let cardView = sender.view else { return }
-        guard let index = stackView.arrangedSubviews.firstIndex(of: cardView) else { return }
+        guard let index = vstack.arrangedSubviews.firstIndex(of: cardView) else { return }
         
         let verseSheetViewController = VerseSheetViewController()
         verseSheetViewController.textToDisplay = savedTexts[index].text

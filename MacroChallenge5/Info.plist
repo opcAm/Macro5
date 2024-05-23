@@ -4,10 +4,10 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>MaliRegular</string>
-		<string>MaliSemibold</string>
-		<string>MaliBold</string>
-		<string>MaliItalic</string>
+		<string>MaliRegular.ttf</string>
+		<string>MaliSemibold.ttf</string>
+		<string>MaliBold.ttf</string>
+		<string>MaliItalic.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
