@@ -150,7 +150,7 @@ class BooksViewController: UIViewController {
         matBook.addTarget(self, action: #selector(navigate), for: .touchDown)
         
         NSLayoutConstraint.activate([
-            matBook.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            matBook.topAnchor.constraint(equalTo: titleBook.bottomAnchor,constant: 20),
             matBook.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
             matBook.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
             matBook.heightAnchor.constraint(equalToConstant: 70)

@@ -6,31 +6,31 @@
 //
 
 import UIKit
+import CoreData
 
 class MateusViewController: UIViewController {
 
     let cardInfo: UIView = {
-            let v = UIView()
-            v.backgroundColor = .greenDark
-            v.layer.cornerRadius = 10
-            v.layer.shadowColor = UIColor.black.cgColor
+        let v = UIView()
+        v.backgroundColor = .greenDark
+        v.layer.cornerRadius = 10
+        v.layer.shadowColor = UIColor.black.cgColor
         v.layer.shadowOpacity = 0.3
-            v.layer.shadowOffset = CGSize(width: 0, height: 5)
-            v.layer.shadowRadius = 10
+        v.layer.shadowOffset = CGSize(width: 0, height: 5)
+        v.layer.shadowRadius = 10
         v.translatesAutoresizingMaskIntoConstraints = false
-            return v
-        }()
-        
-        let textLabel: UILabel = {
-            let label = UILabel()
-            label.text = "Esse evangelho foi escrito se preocupando com os judeus, por este motivo há muitas referências às profecias Antigo Testamento (pelo menos 129 citações), as quais Jesus cumpriu. O objetivo era mostrar aos judeus que Jesus era de fato, o Messias aguardado.\n\nAUTOR: Mateus\n\nPROPÓSITO: Apresentar Jesus como o Messias que trouxe o Reino dos Céus à Terra.\n\nTEMAS ABORDADOS: Jesus, o Messias, Reino dos Céus e a inclusão dos gentios Nele."
-            label.numberOfLines = 0
-            label.textColor = .black
-            label.font = UIFont.systemFont(ofSize: 18)
-            label.translatesAutoresizingMaskIntoConstraints = false
-            return label
-        }()
+        return v
+    }()
     
+    let textLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Esse evangelho foi escrito se preocupando com os judeus, por este motivo há muitas referências às profecias Antigo Testamento (pelo menos 129 citações), as quais Jesus cumpriu. O objetivo era mostrar aos judeus que Jesus era de fato, o Messias aguardado.\n\nAUTOR: Mateus\n\nPROPÓSITO: Apresentar Jesus como o Messias que trouxe o Reino dos Céus à Terra.\n\nTEMAS ABORDADOS: Jesus, o Messias, Reino dos Céus e a inclusão dos gentios Nele."
+        label.numberOfLines = 0
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     let isDone: UIView = {
         let view = UIView()
@@ -64,33 +64,34 @@ class MateusViewController: UIViewController {
     }()
     
     var isToggleOn = false
-        
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            
-            view.backgroundColor = .background
-            
-            setCard()
-            setToggle()
-        }
-        
-        func setCard() {
-            view.addSubview(cardInfo)
-            cardInfo.addSubview(textLabel)
-            
-            NSLayoutConstraint.activate([
-                cardInfo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                cardInfo.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -60),
-                cardInfo.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
-                cardInfo.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
+    var verse: Verse?
 
-//========================= TEXTO ================================
-                textLabel.topAnchor.constraint(equalTo: cardInfo.topAnchor),
-                textLabel.leadingAnchor.constraint(equalTo: cardInfo.leadingAnchor, constant: 20),
-                textLabel.trailingAnchor.constraint(equalTo: cardInfo.trailingAnchor, constant: -20),
-                textLabel.bottomAnchor.constraint(equalTo: cardInfo.bottomAnchor)
-            ])
-        }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .background
+        
+        setCard()
+        setToggle()
+    }
+    
+    func setCard() {
+        view.addSubview(cardInfo)
+        cardInfo.addSubview(textLabel)
+        
+        NSLayoutConstraint.activate([
+            cardInfo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            cardInfo.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -60),
+            cardInfo.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+            cardInfo.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
+
+            //========================= TEXTO ================================
+            textLabel.topAnchor.constraint(equalTo: cardInfo.topAnchor),
+            textLabel.leadingAnchor.constraint(equalTo: cardInfo.leadingAnchor, constant: 20),
+            textLabel.trailingAnchor.constraint(equalTo: cardInfo.trailingAnchor, constant: -20),
+            textLabel.bottomAnchor.constraint(equalTo: cardInfo.bottomAnchor)
+        ])
+    }
     
     func setToggle() {
         view.addSubview(isDone)
@@ -98,7 +99,7 @@ class MateusViewController: UIViewController {
         isDone.addSubview(text)
         
         NSLayoutConstraint.activate([
-            isDone.topAnchor.constraint(equalTo: cardInfo.bottomAnchor,constant: 50),
+            isDone.topAnchor.constraint(equalTo: cardInfo.bottomAnchor, constant: 50),
             isDone.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             isDone.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             isDone.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.06),
@@ -121,8 +122,54 @@ class MateusViewController: UIViewController {
     @objc func handleCardTap() {
         isToggleOn.toggle()
         let imageName = isToggleOn ? "checkmark.circle.fill" : "checkmark.circle"
-        
         toggle.image = UIImage(systemName: imageName)
+        
+        saveVerseState()
+    }
+    
+    func loadVerseState() {
+        let context = CoreDataStack.shared.context
+        let fetchRequest: NSFetchRequest<Verse> = Verse.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "title == %@", "Mateus")
+
+        do {
+            let verses = try context.fetch(fetchRequest)
+            if let verse = verses.first {
+                self.verse = verse
+                isToggleOn = verse.doneMat
+                let imageName = isToggleOn ? "checkmark.circle.fill" : "checkmark.circle"
+                toggle.image = UIImage(systemName: imageName)
+            } else {
+                createVerse(context: context)
+            }
+        } catch {
+            print("Failed to fetch verse: \(error)")
+        }
+    }
+    
+    func createVerse(context: NSManagedObjectContext) {
+        let verse = Verse(context: context)
+        verse.title = "Mateus"
+        verse.text = textLabel.text
+        verse.doneMat = false
+        
+        do {
+            try context.save()
+            self.verse = verse
+        } catch {
+            print("Failed to create verse: \(error)")
+        }
+    }
+    
+    func saveVerseState() {
+        guard let verse = verse else { return }
+        verse.doneMat = isToggleOn
+        
+        do {
+            try CoreDataStack.shared.context.save()
+        } catch {
+            print("Failed to save verse state: \(error)")
+        }
     }
 }
 

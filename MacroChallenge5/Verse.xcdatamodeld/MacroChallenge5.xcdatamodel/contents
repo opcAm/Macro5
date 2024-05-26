@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22758" systemVersion="23B81" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Verse" representedClassName="Verse" syncable="YES" codeGenerationType="class">
+        <attribute name="doneEx" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="doneGen" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="doneJoao" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="doneLuc" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="doneMar" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="doneMat" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="text" optional="YES" attributeType="String"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+    </entity>
+</model>

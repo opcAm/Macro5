@@ -8,9 +8,6 @@
 import UIKit
 import CoreData
 
-import UIKit
-import CoreData
-
 class VerseViewController: UIViewController {
     
     var savedTexts: [Verse] = []
@@ -66,12 +63,10 @@ class VerseViewController: UIViewController {
         setElements()
         view.backgroundColor = .background
         
-        //scroll view (que diga-se de passagem, NÃO FUNCIONA AAAAAAA)
         scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scrollView)
         
-        // pros cards
         vstack = UIStackView()
         vstack.axis = .vertical
         vstack.spacing = 10
@@ -122,12 +117,15 @@ class VerseViewController: UIViewController {
         ])
     }
     
-    func addCard(withTitle title: String, text: String) {
+    func addCard(withTitle title: String, text: String, index: Int) {
         let cardView = UIView()
         cardView.backgroundColor = .pinkk
         cardView.layer.cornerRadius = 20
         cardView.isUserInteractionEnabled = true
+        cardView.tag = index
+
         cardView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showVerseSheet(_:))))
+        cardView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:))))
         
         let titleLabel = UILabel()
         titleLabel.text = title
@@ -167,7 +165,7 @@ class VerseViewController: UIViewController {
         guard let index = vstack.arrangedSubviews.firstIndex(of: cardView) else { return }
         
         let verseSheetViewController = VerseSheetViewController()
-        verseSheetViewController.textToDisplay = savedTexts[index].text
+        verseSheetViewController.textToDisplay = savedTexts[index].text ?? ""
         verseSheetViewController.modalPresentationStyle = .pageSheet
         
         if let sheet = verseSheetViewController.sheetPresentationController {
@@ -177,8 +175,35 @@ class VerseViewController: UIViewController {
         
         present(verseSheetViewController, animated: true, completion: nil)
     }
+
+    @objc func handleLongPress(_ sender: UILongPressGestureRecognizer) {
+        guard sender.state == .began else { return }
+        
+        let alert = UIAlertController(title: "Delete Verse", message: "Are you sure you want to delete this verse?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
+            guard let cardView = sender.view else { return }
+            self.deleteVerse(at: cardView.tag)
+        }))
+        
+        present(alert, animated: true, completion: nil)
+    }
     
-//======================= Mensagem sem versiculo =========================
+    func deleteVerse(at index: Int) {
+        let context = CoreDataStack.shared.context
+        context.delete(savedTexts[index])
+        
+        do {
+            try context.save()
+            savedTexts.remove(at: index)
+            vstack.arrangedSubviews[index].removeFromSuperview()
+            ifMessage()
+        } catch {
+            print("Failed to delete verse: \(error)")
+        }
+    }
+
+    //======================= Mensagem sem versiculo =========================
     
     func ifMessage() {
         if savedTexts.isEmpty {
@@ -206,12 +231,12 @@ class VerseViewController: UIViewController {
     
     func fetchSavedVerses() {
         let context = CoreDataStack.shared.context
-        let fetchRequest: NSFetchRequest<Verse> = Verse.fetchRequest() 
+        let fetchRequest: NSFetchRequest<Verse> = Verse.fetchRequest()
         
         do {
             savedTexts = try context.fetch(fetchRequest)
-            for verse in savedTexts {
-                addCard(withTitle: verse.title, text: verse.text)
+            for (index, verse) in savedTexts.enumerated() {
+                addCard(withTitle: verse.title ?? "", text: verse.text ?? "", index: index)
             }
         } catch {
             print("Failed to fetch verses: \(error)")
@@ -222,20 +247,24 @@ class VerseViewController: UIViewController {
 extension VerseViewController: SheetViewControllerDelegate {
     func didSubmitText(title: String, text: String) {
         let context = CoreDataStack.shared.context
-        let verse = Verse(context: context)
+        guard let entity = NSEntityDescription.entity(forEntityName: "Verse", in: context) else {
+            fatalError("Could not find entity description!")
+        }
+        let verse = Verse(entity: entity, insertInto: context)
         verse.title = title
         verse.text = text
         
         do {
             try context.save()
             savedTexts.append(verse)
-            addCard(withTitle: title, text: text)
+            addCard(withTitle: title, text: text, index: savedTexts.count - 1)
             ifMessage()
         } catch {
             print("Failed to save verse: \(error)")
         }
     }
 }
+
 
 #Preview(){
     MainTabBarController()

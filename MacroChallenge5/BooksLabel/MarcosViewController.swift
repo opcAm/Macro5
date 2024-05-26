@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MarcosViewController: UIViewController {
     
@@ -23,8 +24,8 @@ class MarcosViewController: UIViewController {
     
     let textLabel: UILabel = {
         let label = UILabel()
-        label.text = "O Evangelho de Marcos é um relato de vida, ministério, dos milagres e palavra de Jesus Cristo. Contrariando Mateus, que apresenta Jesus como Messias, Marcos enfatiza a servidão do Senhor.\n\nAUTOR: João Marcos\n\nPROPÓSITO: AApresentar Jesus Cristo como servo e Filho d DMareus, recontando Seu ministério e ensinamentos.\n\nTEMAS ABORDADOS: esus, o Messias, servidão/ministério, milagres."
-
+        label.text = "O Evangelho de Marcos é um relato de vida, ministério, dos milagres e palavra de Jesus Cristo. Contrariando Mateus, que apresenta Jesus como Messias, Marcos enfatiza a servidão do Senhor.\n\nAUTOR: João Marcos\n\nPROPÓSITO: Apresentar Jesus Cristo como servo e Filho de Deus, recontando Seu ministério e ensinamentos.\n\nTEMAS ABORDADOS: Jesus, o Messias, servidão/ministério, milagres."
+        
         label.numberOfLines = 0
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 18)
@@ -64,6 +65,7 @@ class MarcosViewController: UIViewController {
     }()
     
     var isToggleOn = false
+    var verse: Verse?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +74,7 @@ class MarcosViewController: UIViewController {
         
         setCard()
         setToggle()
+        loadVerseState()
     }
     
     func setCard() {
@@ -97,7 +100,7 @@ class MarcosViewController: UIViewController {
         isDone.addSubview(text)
         
         NSLayoutConstraint.activate([
-            isDone.topAnchor.constraint(equalTo: cardInfo.bottomAnchor,constant: 50),
+            isDone.topAnchor.constraint(equalTo: cardInfo.bottomAnchor, constant: 50),
             isDone.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             isDone.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             isDone.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.06),
@@ -122,6 +125,59 @@ class MarcosViewController: UIViewController {
         let imageName = isToggleOn ? "checkmark.circle.fill" : "checkmark.circle"
         
         toggle.image = UIImage(systemName: imageName)
+        saveVerseState()
+    }
+    
+    func loadVerseState() {
+        print("Loading verse state...")
+        let context = CoreDataStack.shared.context
+        let fetchRequest: NSFetchRequest<Verse> = Verse.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "title == %@", "Marcos")
+        
+        do {
+            let verses = try context.fetch(fetchRequest)
+            if let verse = verses.first {
+                self.verse = verse
+                isToggleOn = verse.doneMar
+                let imageName = isToggleOn ? "checkmark.circle.fill" : "checkmark.circle"
+                toggle.image = UIImage(systemName: imageName)
+                print("Verse state loaded successfully.")
+            } else {
+                print("No verse found, creating a new one.")
+                createVerse(context: context)
+            }
+        } catch {
+            print("Failed to fetch verse: \(error)")
+        }
+    }
+    
+    func createVerse(context: NSManagedObjectContext) {
+        print("Creating a new verse...")
+        let verse = Verse(context: context)
+        verse.title = "Marcos"
+        verse.text = textLabel.text
+        verse.doneMar = false
+        
+        do {
+            try context.save()
+            self.verse = verse
+            print("Verse created successfully.")
+        } catch {
+            print("Failed to create verse: \(error)")
+        }
+    }
+    
+    func saveVerseState() {
+        print("Saving verse state...")
+        guard let verse = verse else { return }
+        verse.doneMar = isToggleOn
+        
+        do {
+            try CoreDataStack.shared.context.save()
+            print("Verse state saved successfully.")
+        } catch {
+            print("Failed to save verse state: \(error)")
+        }
     }
 }
 

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		BA8736742BF3CCAE006F2246 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8736732BF3CCAE006F2246 /* AppDelegate.swift */; };
 		BA8736762BF3CCAE006F2246 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8736752BF3CCAE006F2246 /* SceneDelegate.swift */; };
-		BA87367E2BF3CCAE006F2246 /* MacroChallenge5.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BA87367C2BF3CCAE006F2246 /* MacroChallenge5.xcdatamodeld */; };
+		BA87367E2BF3CCAE006F2246 /* Verse.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BA87367C2BF3CCAE006F2246 /* Verse.xcdatamodeld */; };
 		BA8736802BF3CCAF006F2246 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA87367F2BF3CCAF006F2246 /* Assets.xcassets */; };
 		BA8736832BF3CCAF006F2246 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = BA8736822BF3CCAF006F2246 /* Base */; };
 		BA87368B2BF3D07E006F2246 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA87368A2BF3D07E006F2246 /* MainTabBarController.swift */; };
@@ -100,7 +100,7 @@
 				BA87367F2BF3CCAF006F2246 /* Assets.xcassets */,
 				BA8736812BF3CCAF006F2246 /* LaunchScreen.storyboard */,
 				BA8736842BF3CCAF006F2246 /* Info.plist */,
-				BA87367C2BF3CCAE006F2246 /* MacroChallenge5.xcdatamodeld */,
+				BA87367C2BF3CCAE006F2246 /* Verse.xcdatamodeld */,
 				BA8736AB2BF3E2E0006F2246 /* Fonts */,
 			);
 			path = MacroChallenge5;
@@ -240,7 +240,7 @@
 				BA87368B2BF3D07E006F2246 /* MainTabBarController.swift in Sources */,
 				BAEA64C32BF69419004D0FBA /* SheetViewController.swift in Sources */,
 				BAEA64CD2BFE6713004D0FBA /* LucasViewController.swift in Sources */,
-				BA87367E2BF3CCAE006F2246 /* MacroChallenge5.xcdatamodeld in Sources */,
+				BA87367E2BF3CCAE006F2246 /* Verse.xcdatamodeld in Sources */,
 				BAEA64CF2BFE6763004D0FBA /* JoaoViewController.swift in Sources */,
 				BA8736762BF3CCAE006F2246 /* SceneDelegate.swift in Sources */,
 				BAEA64D82C02C1BC004D0FBA /* Verse.swift in Sources */,
@@ -463,13 +463,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		BA87367C2BF3CCAE006F2246 /* MacroChallenge5.xcdatamodeld */ = {
+		BA87367C2BF3CCAE006F2246 /* Verse.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				BA87367D2BF3CCAE006F2246 /* MacroChallenge5.xcdatamodel */,
 			);
 			currentVersion = BA87367D2BF3CCAE006F2246 /* MacroChallenge5.xcdatamodel */;
-			path = MacroChallenge5.xcdatamodeld;
+			path = Verse.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

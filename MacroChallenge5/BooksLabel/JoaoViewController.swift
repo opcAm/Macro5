@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class JoaoViewController: UIViewController {
     
@@ -63,6 +64,7 @@ class JoaoViewController: UIViewController {
     }()
     
     var isToggleOn = false
+    var verse: Verse?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +73,7 @@ class JoaoViewController: UIViewController {
         
         setCard()
         setToggle()
+        loadVerseState() // Carrega o estado do versículo
     }
     
     func setCard() {
@@ -83,7 +86,6 @@ class JoaoViewController: UIViewController {
             cardInfo.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             cardInfo.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
             
-            //========================= TEXTO ================================
             textLabel.topAnchor.constraint(equalTo: cardInfo.topAnchor),
             textLabel.leadingAnchor.constraint(equalTo: cardInfo.leadingAnchor, constant: 20),
             textLabel.trailingAnchor.constraint(equalTo: cardInfo.trailingAnchor, constant: -20),
@@ -97,7 +99,7 @@ class JoaoViewController: UIViewController {
         cardDone.addSubview(textDone)
         
         NSLayoutConstraint.activate([
-            cardDone.topAnchor.constraint(equalTo: cardInfo.bottomAnchor,constant: 50),
+            cardDone.topAnchor.constraint(equalTo: cardInfo.bottomAnchor, constant: 50),
             cardDone.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             cardDone.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             cardDone.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.06),
@@ -122,6 +124,58 @@ class JoaoViewController: UIViewController {
         let imageName = isToggleOn ? "checkmark.circle.fill" : "checkmark.circle"
         
         toggleImage.image = UIImage(systemName: imageName)
+        saveVerseState()
     }
     
+    func loadVerseState() {
+        print("Loading verse state...")
+        let context = CoreDataStack.shared.context
+        let fetchRequest: NSFetchRequest<Verse> = Verse.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "title == %@", "João")
+        
+        do {
+            let verses = try context.fetch(fetchRequest)
+            if let verse = verses.first {
+                self.verse = verse
+                isToggleOn = verse.doneJoao
+                let imageName = isToggleOn ? "checkmark.circle.fill" : "checkmark.circle"
+                toggleImage.image = UIImage(systemName: imageName)
+                print("Verse state loaded successfully.")
+            } else {
+                print("No verse found, creating a new one.")
+                createVerse(context: context)
+            }
+        } catch {
+            print("Failed to fetch verse: \(error)")
+        }
+    }
+    
+    func createVerse(context: NSManagedObjectContext) {
+        print("Creating a new verse...")
+        let verse = Verse(context: context)
+        verse.title = "João"
+        verse.text = textLabel.text
+        verse.doneJoao = false
+        
+        do {
+            try context.save()
+            self.verse = verse
+            print("Verse created successfully.")
+        } catch {
+            print("Failed to create verse: \(error)")
+        }
+    }
+    
+    func saveVerseState() {
+        print("Saving verse state...")
+        guard let verse = verse else { return }
+        verse.doneJoao = isToggleOn
+        
+        do {
+            try CoreDataStack.shared.context.save()
+            print("Verse state saved successfully.")
+        } catch {
+            print("Failed to save verse state: \(error)")
+        }
+    }
 }
