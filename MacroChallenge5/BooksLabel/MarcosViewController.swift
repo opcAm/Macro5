@@ -11,7 +11,7 @@ class MarcosViewController: UIViewController {
     
     let cardInfo: UIView = {
         let v = UIView()
-        v.backgroundColor = .pinkk
+        v.backgroundColor = .brownn
         v.layer.cornerRadius = 10
         v.layer.shadowColor = UIColor.black.cgColor
         v.layer.shadowOpacity = 0.3
@@ -34,7 +34,7 @@ class MarcosViewController: UIViewController {
     
     let isDone: UIView = {
         let view = UIView()
-        view.backgroundColor = .pinkk
+        view.backgroundColor = .brownn
         view.layer.cornerRadius = 10
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOpacity = 0.1

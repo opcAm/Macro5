@@ -11,7 +11,7 @@ class LucasViewController: UIViewController {
 
     let cardInfo: UIView = {
             let v = UIView()
-            v.backgroundColor = .pinkk
+            v.backgroundColor = .bluee
             v.layer.cornerRadius = 10
             v.layer.shadowColor = UIColor.black.cgColor
         v.layer.shadowOpacity = 0.3
@@ -33,7 +33,7 @@ class LucasViewController: UIViewController {
     
     let isDone: UIView = {
         let view = UIView()
-        view.backgroundColor = .pinkk
+        view.backgroundColor = .bluee
         view.layer.cornerRadius = 10
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOpacity = 0.1

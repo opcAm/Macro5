@@ -9,52 +9,95 @@ import UIKit
 
 class BooksViewController: UIViewController {
     
-
-    // Exemplo de como aplicar uma fonte customizada a um UILabel
-    
-
-    
     let matBook: UIButton = {
-        let m = UIButton()
-        m.setImage(UIImage(named: "0"), for: .normal)
+        let c = UIButton(type: .system)
+        c.setTitle("Mateus", for: .normal)
+        c.backgroundColor = UIColor.greenDark
+        c.setTitleColor(UIColor.fonte, for: .normal)
         
-        m.translatesAutoresizingMaskIntoConstraints =  false
-        return m
+        c.layer.cornerRadius = 20
+        c.layer.shadowColor = UIColor.black.cgColor
+        c.layer.shadowOffset = CGSize(width: 0, height: 2)
+        c.layer.shadowOpacity = 0.3
+        c.layer.shadowRadius = 4
+        
+        c.translatesAutoresizingMaskIntoConstraints = false
+        return c
     }()
     let marBook: UIButton = {
-        let m = UIButton()
-        m.setImage(UIImage(named: "1"), for: .normal)
+        let c = UIButton(type: .system)
+        c.setTitle("Marcos", for: .normal)
+        c.backgroundColor = UIColor.brownn
+        c.setTitleColor(UIColor.fonte, for: .normal)
         
-        m.translatesAutoresizingMaskIntoConstraints =  false
-        return m
+        c.layer.cornerRadius = 20
+        c.layer.shadowColor = UIColor.black.cgColor
+        c.layer.shadowOffset = CGSize(width: 0, height: 2)
+        c.layer.shadowOpacity = 0.3
+        c.layer.shadowRadius = 4
+        
+        c.translatesAutoresizingMaskIntoConstraints = false
+        return c
     }()
     let lucBook: UIButton = {
-        let m = UIButton()
-        m.setImage(UIImage(named: "2"), for: .normal)
+        let c = UIButton(type: .system)
+        c.setTitle("Lucas", for: .normal)
+        c.backgroundColor = UIColor.bluee
+        c.setTitleColor(UIColor.fonte, for: .normal)
         
-        m.translatesAutoresizingMaskIntoConstraints =  false
-        return m
+        c.layer.cornerRadius = 20
+        c.layer.shadowColor = UIColor.black.cgColor
+        c.layer.shadowOffset = CGSize(width: 0, height: 2)
+        c.layer.shadowOpacity = 0.3
+        c.layer.shadowRadius = 4
+        
+        c.translatesAutoresizingMaskIntoConstraints = false
+        return c
     }()
     let joaoBook: UIButton = {
-        let m = UIButton()
-        m.setImage(UIImage(named: "3"), for: .normal)
+        let c = UIButton(type: .system)
+        c.setTitle("João", for: .normal)
+        c.backgroundColor = UIColor.pinkk
+        c.setTitleColor(UIColor.fonte, for: .normal)
         
-        m.translatesAutoresizingMaskIntoConstraints =  false
-        return m
+        c.layer.cornerRadius = 20
+        c.layer.shadowColor = UIColor.black.cgColor
+        c.layer.shadowOffset = CGSize(width: 0, height: 2)
+        c.layer.shadowOpacity = 0.3
+        c.layer.shadowRadius = 4
+        
+        c.translatesAutoresizingMaskIntoConstraints = false
+        return c
     }()
     let genBook: UIButton = {
-        let m = UIButton()
-        m.setImage(UIImage(named: "4"), for: .normal)
+        let c = UIButton(type: .system)
+        c.setTitle("Gênesis", for: .normal)
+        c.backgroundColor = UIColor.greenDark
+        c.setTitleColor(UIColor.fonte, for: .normal)
         
-        m.translatesAutoresizingMaskIntoConstraints =  false
-        return m
+        c.layer.cornerRadius = 20
+        c.layer.shadowColor = UIColor.black.cgColor
+        c.layer.shadowOffset = CGSize(width: 0, height: 2)
+        c.layer.shadowOpacity = 0.3
+        c.layer.shadowRadius = 4
+        
+        c.translatesAutoresizingMaskIntoConstraints = false
+        return c
     }()
     let exBook: UIButton = {
-        let m = UIButton()
-        m.setImage(UIImage(named: "5"), for: .normal)
+        let c = UIButton(type: .system)
+        c.setTitle("Êxodo", for: .normal)
+        c.backgroundColor = UIColor.brownn
+        c.setTitleColor(UIColor.fonte, for: .normal)
         
-        m.translatesAutoresizingMaskIntoConstraints =  false
-        return m
+        c.layer.cornerRadius = 20
+        c.layer.shadowColor = UIColor.black.cgColor
+        c.layer.shadowOffset = CGSize(width: 0, height: 2)
+        c.layer.shadowOpacity = 0.3
+        c.layer.shadowRadius = 4
+        
+        c.translatesAutoresizingMaskIntoConstraints = false
+        return c
     }()
     
 //-----------------------------------------------------------------------------------------------------------
@@ -107,9 +150,10 @@ class BooksViewController: UIViewController {
         matBook.addTarget(self, action: #selector(navigate), for: .touchDown)
         
         NSLayoutConstraint.activate([
-            matBook.topAnchor.constraint(equalTo: self.titleBook.bottomAnchor, constant: 28),
+            matBook.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             matBook.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-            matBook.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20)
+            matBook.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+            matBook.heightAnchor.constraint(equalToConstant: 70)
         ])
     }
     func setMar() {
@@ -118,9 +162,10 @@ class BooksViewController: UIViewController {
         marBook.addTarget(self, action: #selector(navigate2), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            marBook.topAnchor.constraint(equalTo: self.matBook.bottomAnchor, constant: 10),
+            marBook.topAnchor.constraint(equalTo: matBook.bottomAnchor, constant: 10),
             marBook.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-            marBook.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20)
+            marBook.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+            marBook.heightAnchor.constraint(equalToConstant: 70)
         ])
     }
     
@@ -130,9 +175,10 @@ class BooksViewController: UIViewController {
         lucBook.addTarget(self, action: #selector(navigate3), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            lucBook.topAnchor.constraint(equalTo: self.marBook.bottomAnchor, constant: 10),
+            lucBook.topAnchor.constraint(equalTo: marBook.bottomAnchor, constant: 10),
             lucBook.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-            lucBook.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20)
+            lucBook.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+            lucBook.heightAnchor.constraint(equalToConstant: 70)
         ])
     }
     
@@ -142,9 +188,10 @@ class BooksViewController: UIViewController {
         joaoBook.addTarget(self, action: #selector(navigate4), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            joaoBook.topAnchor.constraint(equalTo: self.lucBook.bottomAnchor, constant: 10),
+            joaoBook.topAnchor.constraint(equalTo: lucBook.bottomAnchor, constant: 10),
             joaoBook.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-            joaoBook.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20)
+            joaoBook.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+            joaoBook.heightAnchor.constraint(equalToConstant: 70)
         ])
     }
     
@@ -154,9 +201,10 @@ class BooksViewController: UIViewController {
         genBook.addTarget(self, action: #selector(navigate5), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            genBook.topAnchor.constraint(equalTo: self.joaoBook.bottomAnchor, constant: 10),
+            genBook.topAnchor.constraint(equalTo: joaoBook.bottomAnchor, constant: 10),
             genBook.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-            genBook.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20)
+            genBook.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+            genBook.heightAnchor.constraint(equalToConstant: 70)
         ])
     }
     
@@ -166,9 +214,10 @@ class BooksViewController: UIViewController {
         exBook.addTarget(self, action: #selector(navigate6), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
-            exBook.topAnchor.constraint(equalTo: self.genBook.bottomAnchor, constant: 10),
+            exBook.topAnchor.constraint(equalTo: genBook.bottomAnchor, constant: 10),
             exBook.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-            exBook.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20)
+            exBook.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
+            exBook.heightAnchor.constraint(equalToConstant: 70)
         ])
     }
 //==========================================================================================================================

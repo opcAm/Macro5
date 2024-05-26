@@ -28,6 +28,8 @@
 		BAEA64CF2BFE6763004D0FBA /* JoaoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEA64CE2BFE6763004D0FBA /* JoaoViewController.swift */; };
 		BAEA64D12BFE7183004D0FBA /* GenesisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEA64D02BFE7183004D0FBA /* GenesisViewController.swift */; };
 		BAEA64D32BFE718C004D0FBA /* ExodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEA64D22BFE718C004D0FBA /* ExodoViewController.swift */; };
+		BAEA64D82C02C1BC004D0FBA /* Verse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEA64D72C02C1BC004D0FBA /* Verse.swift */; };
+		BAEA64DA2C02C1D8004D0FBA /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEA64D92C02C1D8004D0FBA /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		BAEA64CE2BFE6763004D0FBA /* JoaoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoaoViewController.swift; sourceTree = "<group>"; };
 		BAEA64D02BFE7183004D0FBA /* GenesisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenesisViewController.swift; sourceTree = "<group>"; };
 		BAEA64D22BFE718C004D0FBA /* ExodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExodoViewController.swift; sourceTree = "<group>"; };
+		BAEA64D72C02C1BC004D0FBA /* Verse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Verse.swift; sourceTree = "<group>"; };
+		BAEA64D92C02C1D8004D0FBA /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,7 @@
 				BA87368E2BF3E062006F2246 /* ViewsPrincipais */,
 				BAEA64C62BFE65B8004D0FBA /* Sheets */,
 				BAEA64C72BFE65EA004D0FBA /* BooksLabel */,
+				BAEA64D62C02C190004D0FBA /* Save */,
 				BA87367F2BF3CCAF006F2246 /* Assets.xcassets */,
 				BA8736812BF3CCAF006F2246 /* LaunchScreen.storyboard */,
 				BA8736842BF3CCAF006F2246 /* Info.plist */,
@@ -142,6 +147,15 @@
 				BAEA64D22BFE718C004D0FBA /* ExodoViewController.swift */,
 			);
 			path = BooksLabel;
+			sourceTree = "<group>";
+		};
+		BAEA64D62C02C190004D0FBA /* Save */ = {
+			isa = PBXGroup;
+			children = (
+				BAEA64D72C02C1BC004D0FBA /* Verse.swift */,
+				BAEA64D92C02C1D8004D0FBA /* CoreDataStack.swift */,
+			);
+			path = Save;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +243,8 @@
 				BA87367E2BF3CCAE006F2246 /* MacroChallenge5.xcdatamodeld in Sources */,
 				BAEA64CF2BFE6763004D0FBA /* JoaoViewController.swift in Sources */,
 				BA8736762BF3CCAE006F2246 /* SceneDelegate.swift in Sources */,
+				BAEA64D82C02C1BC004D0FBA /* Verse.swift in Sources */,
+				BAEA64DA2C02C1D8004D0FBA /* CoreDataStack.swift in Sources */,
 				BAEA64D12BFE7183004D0FBA /* GenesisViewController.swift in Sources */,
 				BA87368D2BF3E039006F2246 /* VerseViewController.swift in Sources */,
 				BAEA64D32BFE718C004D0FBA /* ExodoViewController.swift in Sources */,

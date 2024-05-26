@@ -6,10 +6,14 @@
 //
 
 import UIKit
+import CoreData
+
+import UIKit
+import CoreData
 
 class VerseViewController: UIViewController {
     
-    var savedTexts: [(title: String, text: String)] = []
+    var savedTexts: [Verse] = []
     var scrollView: UIScrollView!
     var vstack: UIStackView!
     
@@ -86,6 +90,7 @@ class VerseViewController: UIViewController {
             vstack.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
         
+        fetchSavedVerses()
         ifMessage()
     }
     
@@ -198,13 +203,37 @@ class VerseViewController: UIViewController {
             messageEmpty2.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -103)
         ])
     }
+    
+    func fetchSavedVerses() {
+        let context = CoreDataStack.shared.context
+        let fetchRequest: NSFetchRequest<Verse> = Verse.fetchRequest() 
+        
+        do {
+            savedTexts = try context.fetch(fetchRequest)
+            for verse in savedTexts {
+                addCard(withTitle: verse.title, text: verse.text)
+            }
+        } catch {
+            print("Failed to fetch verses: \(error)")
+        }
+    }
 }
 
 extension VerseViewController: SheetViewControllerDelegate {
     func didSubmitText(title: String, text: String) {
-        savedTexts.append((title: title, text: text))
-        addCard(withTitle: title, text: text)
-        ifMessage()
+        let context = CoreDataStack.shared.context
+        let verse = Verse(context: context)
+        verse.title = title
+        verse.text = text
+        
+        do {
+            try context.save()
+            savedTexts.append(verse)
+            addCard(withTitle: title, text: text)
+            ifMessage()
+        } catch {
+            print("Failed to save verse: \(error)")
+        }
     }
 }
 

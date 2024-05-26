@@ -11,7 +11,7 @@ class MateusViewController: UIViewController {
 
     let cardInfo: UIView = {
             let v = UIView()
-            v.backgroundColor = .pinkk
+            v.backgroundColor = .greenDark
             v.layer.cornerRadius = 10
             v.layer.shadowColor = UIColor.black.cgColor
         v.layer.shadowOpacity = 0.3
@@ -34,7 +34,7 @@ class MateusViewController: UIViewController {
     
     let isDone: UIView = {
         let view = UIView()
-        view.backgroundColor = .pinkk
+        view.backgroundColor = .greenDark
         view.layer.cornerRadius = 10
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOpacity = 0.1
