@@ -125,6 +125,9 @@ class VerseViewController: UIViewController, SheetViewControllerDelegate {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showVerseSheet(_:)))
         cardView.addGestureRecognizer(tapGestureRecognizer)
         
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(deleteCard(_:)))
+        cardView.addGestureRecognizer(longPressGestureRecognizer)
+        
         let titleLabel = UILabel()
         titleLabel.text = title
         titleLabel.textAlignment = .center
@@ -173,6 +176,21 @@ class VerseViewController: UIViewController, SheetViewControllerDelegate {
         }
         
         present(verseSheetViewController, animated: true, completion: nil)
+    }
+    
+    @objc func deleteCard(_ sender: UILongPressGestureRecognizer) {
+        guard sender.state == .began else { return }
+        guard let cardView = sender.view else { return }
+        
+        let alert = UIAlertController(title: "Excluir Versículo", message: "Você tem certeza de que deseja excluir este versículo?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Excluir", style: .destructive, handler: { _ in
+            self.vstack.removeArrangedSubview(cardView)
+            cardView.removeFromSuperview()
+            self.ifMessage()
+        }))
+        
+        present(alert, animated: true, completion: nil)
     }
     
     //======================= Mensagem sem versiculo =========================
