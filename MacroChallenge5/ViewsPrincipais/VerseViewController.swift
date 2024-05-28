@@ -6,11 +6,8 @@
 //
 
 import UIKit
-import CoreData
 
-class VerseViewController: UIViewController {
-    
-    var savedTexts: [Verse] = []
+class VerseViewController: UIViewController, SheetViewControllerDelegate {
     var scrollView: UIScrollView!
     var vstack: UIStackView!
     
@@ -22,7 +19,7 @@ class VerseViewController: UIViewController {
         message.textAlignment = .center
         message.numberOfLines = .max
         message.textColor = .pinkk
-        message.isHidden = false
+        message.isHidden = true
         message.translatesAutoresizingMaskIntoConstraints = false
         return message
     }()
@@ -34,7 +31,7 @@ class VerseViewController: UIViewController {
         message.textAlignment = .center
         message.numberOfLines = .max
         message.textColor = .brown
-        message.isHidden = false
+        message.isHidden = true
         message.translatesAutoresizingMaskIntoConstraints = false
         return message
     }()
@@ -63,10 +60,12 @@ class VerseViewController: UIViewController {
         setElements()
         view.backgroundColor = .background
         
+        //scroll view
         scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scrollView)
         
+        // pros cards
         vstack = UIStackView()
         vstack.axis = .vertical
         vstack.spacing = 10
@@ -85,7 +84,6 @@ class VerseViewController: UIViewController {
             vstack.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
         
-        fetchSavedVerses()
         ifMessage()
     }
     
@@ -117,15 +115,15 @@ class VerseViewController: UIViewController {
         ])
     }
     
-    func addCard(withTitle title: String, text: String, index: Int) {
+    func addCard(withTitle title: String, text: String) {
         let cardView = UIView()
         cardView.backgroundColor = .pinkk
         cardView.layer.cornerRadius = 20
         cardView.isUserInteractionEnabled = true
-        cardView.tag = index
-
-        cardView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showVerseSheet(_:))))
-        cardView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:))))
+        cardView.accessibilityLabel = text  // Store the verse text in the card's accessibility label
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(showVerseSheet(_:)))
+        cardView.addGestureRecognizer(tapGestureRecognizer)
         
         let titleLabel = UILabel()
         titleLabel.text = title
@@ -143,6 +141,7 @@ class VerseViewController: UIViewController {
         ])
         
         vstack.addArrangedSubview(cardView)
+        ifMessage()
     }
     
     @objc func showSheet() {
@@ -162,10 +161,10 @@ class VerseViewController: UIViewController {
     
     @objc func showVerseSheet(_ sender: UITapGestureRecognizer) {
         guard let cardView = sender.view else { return }
-        guard let index = vstack.arrangedSubviews.firstIndex(of: cardView) else { return }
+        let verseText = cardView.accessibilityLabel  // Retrieve the verse text
         
         let verseSheetViewController = VerseSheetViewController()
-        verseSheetViewController.textToDisplay = savedTexts[index].text ?? ""
+        verseSheetViewController.textToDisplay = verseText
         verseSheetViewController.modalPresentationStyle = .pageSheet
         
         if let sheet = verseSheetViewController.sheetPresentationController {
@@ -175,44 +174,12 @@ class VerseViewController: UIViewController {
         
         present(verseSheetViewController, animated: true, completion: nil)
     }
-
-    @objc func handleLongPress(_ sender: UILongPressGestureRecognizer) {
-        guard sender.state == .began else { return }
-        
-        let alert = UIAlertController(title: "Delete Verse", message: "Are you sure you want to delete this verse?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { _ in
-            guard let cardView = sender.view else { return }
-            self.deleteVerse(at: cardView.tag)
-        }))
-        
-        present(alert, animated: true, completion: nil)
-    }
     
-    func deleteVerse(at index: Int) {
-        let context = CoreDataStack.shared.context
-        context.delete(savedTexts[index])
-        
-        do {
-            try context.save()
-            savedTexts.remove(at: index)
-            vstack.arrangedSubviews[index].removeFromSuperview()
-            ifMessage()
-        } catch {
-            print("Failed to delete verse: \(error)")
-        }
-    }
-
     //======================= Mensagem sem versiculo =========================
-    
     func ifMessage() {
-        if savedTexts.isEmpty {
-            messageEmpty1.isHidden = false
-            messageEmpty2.isHidden = false
-        } else {
-            messageEmpty1.isHidden = true
-            messageEmpty2.isHidden = true
-        }
+        let isEmpty = vstack.arrangedSubviews.isEmpty
+        messageEmpty1.isHidden = !isEmpty
+        messageEmpty2.isHidden = !isEmpty
     }
     
     func showMessage() {
@@ -229,43 +196,12 @@ class VerseViewController: UIViewController {
         ])
     }
     
-    func fetchSavedVerses() {
-        let context = CoreDataStack.shared.context
-        let fetchRequest: NSFetchRequest<Verse> = Verse.fetchRequest()
-        
-        do {
-            savedTexts = try context.fetch(fetchRequest)
-            for (index, verse) in savedTexts.enumerated() {
-                addCard(withTitle: verse.title ?? "", text: verse.text ?? "", index: index)
-            }
-        } catch {
-            print("Failed to fetch verses: \(error)")
-        }
-    }
-}
-
-extension VerseViewController: SheetViewControllerDelegate {
+    //======================== SheetViewControllerDelegate ==========================
     func didSubmitText(title: String, text: String) {
-        let context = CoreDataStack.shared.context
-        guard let entity = NSEntityDescription.entity(forEntityName: "Verse", in: context) else {
-            fatalError("Could not find entity description!")
-        }
-        let verse = Verse(entity: entity, insertInto: context)
-        verse.title = title
-        verse.text = text
-        
-        do {
-            try context.save()
-            savedTexts.append(verse)
-            addCard(withTitle: title, text: text, index: savedTexts.count - 1)
-            ifMessage()
-        } catch {
-            print("Failed to save verse: \(error)")
-        }
+        addCard(withTitle: title, text: text)
     }
 }
 
-
-#Preview(){
+#Preview() {
     MainTabBarController()
 }

@@ -8,14 +8,13 @@
 import UIKit
 
 class VerseSheetViewController: UIViewController {
-
+    
     var textToDisplay: String?
 
     private let textView: UITextView = {
         let text = UITextView()
         text.isEditable = false
         text.font = UIFont.systemFont(ofSize: 16)
-        
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
@@ -24,8 +23,6 @@ class VerseSheetViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .pinkk
-            
-        
         setElements()
         
         textView.text = textToDisplay

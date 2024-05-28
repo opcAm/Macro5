@@ -29,7 +29,6 @@ class SheetViewController: UIViewController {
         textField.placeholder = "Versículo"
         textField.borderStyle = .roundedRect
         textField.backgroundColor = .placeholderText
-        
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
@@ -38,19 +37,18 @@ class SheetViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Salvar", for: .normal)
         button.setTitleColor(.orangee, for: .normal)
-        
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-//============================ VIEW DID LOAD =============================
+    
+    //============================ VIEW DID LOAD =============================
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .pinkk
-//            .withAlphaComponent(0.3)
         setElements()
     }
-//========================================================================
+    
     func setElements() {
         setTitleN()
         setText()
@@ -64,7 +62,7 @@ class SheetViewController: UIViewController {
             titleTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             titleTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             titleTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
-            ])
+        ])
     }
     
     func setText() {
@@ -93,6 +91,5 @@ class SheetViewController: UIViewController {
 
         delegate?.didSubmitText(title: title, text: text)
         dismiss(animated: true, completion: nil)
-        
     }
 }

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import CoreData
+//import CoreData
 
 class ExodoViewController: UIViewController {
     
@@ -64,7 +64,6 @@ class ExodoViewController: UIViewController {
     }()
     
     var isToggleOn = false
-    var verse: Verse?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +72,6 @@ class ExodoViewController: UIViewController {
         
         setCard()
         setToggle()
-        loadVerseState() // Carrega o estado do versículo
     }
     
     func setCard() {
@@ -115,68 +113,15 @@ class ExodoViewController: UIViewController {
             toggleImage.heightAnchor.constraint(equalToConstant: 20)
         ])
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleCardTap))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(navigate))
         cardDone.addGestureRecognizer(tapGesture)
     }
     
-    @objc func handleCardTap() {
+    @objc func navigate() {
         isToggleOn.toggle()
         let imageName = isToggleOn ? "checkmark.circle.fill" : "checkmark.circle"
         
         toggleImage.image = UIImage(systemName: imageName)
-        saveVerseState()
-    }
-    
-    func loadVerseState() {
-        print("Loading verse state...")
-        let context = CoreDataStack.shared.context
-        let fetchRequest: NSFetchRequest<Verse> = Verse.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "title == %@", "Êxodo")
-        
-        do {
-            let verses = try context.fetch(fetchRequest)
-            if let verse = verses.first {
-                self.verse = verse
-                isToggleOn = verse.doneEx
-                let imageName = isToggleOn ? "checkmark.circle.fill" : "checkmark.circle"
-                toggleImage.image = UIImage(systemName: imageName)
-                print("Verse state loaded successfully.")
-            } else {
-                print("No verse found, creating a new one.")
-                createVerse(context: context)
-            }
-        } catch {
-            print("Failed to fetch verse: \(error)")
-        }
-    }
-    
-    func createVerse(context: NSManagedObjectContext) {
-        print("Creating a new verse...")
-        let verse = Verse(context: context)
-        verse.title = "Êxodo"
-        verse.text = textLabel.text
-        verse.doneEx = false
-        
-        do {
-            try context.save()
-            self.verse = verse
-            print("Verse created successfully.")
-        } catch {
-            print("Failed to create verse: \(error)")
-        }
-    }
-    
-    func saveVerseState() {
-        print("Saving verse state...")
-        guard let verse = verse else { return }
-        verse.doneEx = isToggleOn
-        
-        do {
-            try CoreDataStack.shared.context.save()
-            print("Verse state saved successfully.")
-        } catch {
-            print("Failed to save verse state: \(error)")
-        }
     }
 }
 

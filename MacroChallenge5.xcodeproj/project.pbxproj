@@ -33,7 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BA8736702BF3CCAE006F2246 /* MacroChallenge5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacroChallenge5.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA8736702BF3CCAE006F2246 /* TeuMomento.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeuMomento.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA8736732BF3CCAE006F2246 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA8736752BF3CCAE006F2246 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BA87367D2BF3CCAE006F2246 /* MacroChallenge5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MacroChallenge5.xcdatamodel; sourceTree = "<group>"; };
@@ -82,7 +82,7 @@
 		BA8736712BF3CCAE006F2246 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BA8736702BF3CCAE006F2246 /* MacroChallenge5.app */,
+				BA8736702BF3CCAE006F2246 /* TeuMomento.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,8 +130,8 @@
 		BAEA64C62BFE65B8004D0FBA /* Sheets */ = {
 			isa = PBXGroup;
 			children = (
-				BAEA64C22BF69419004D0FBA /* SheetViewController.swift */,
 				BAEA64C42BFBA718004D0FBA /* VerseSheetViewController.swift */,
+				BAEA64C22BF69419004D0FBA /* SheetViewController.swift */,
 			);
 			path = Sheets;
 			sourceTree = "<group>";
@@ -161,9 +161,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BA87366F2BF3CCAD006F2246 /* MacroChallenge5 */ = {
+		BA87366F2BF3CCAD006F2246 /* TeuMomento */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BA8736872BF3CCAF006F2246 /* Build configuration list for PBXNativeTarget "MacroChallenge5" */;
+			buildConfigurationList = BA8736872BF3CCAF006F2246 /* Build configuration list for PBXNativeTarget "TeuMomento" */;
 			buildPhases = (
 				BA87366C2BF3CCAD006F2246 /* Sources */,
 				BA87366D2BF3CCAD006F2246 /* Frameworks */,
@@ -173,9 +173,9 @@
 			);
 			dependencies = (
 			);
-			name = MacroChallenge5;
+			name = TeuMomento;
 			productName = MacroChallenge5;
-			productReference = BA8736702BF3CCAE006F2246 /* MacroChallenge5.app */;
+			productReference = BA8736702BF3CCAE006F2246 /* TeuMomento.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -206,7 +206,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BA87366F2BF3CCAD006F2246 /* MacroChallenge5 */,
+				BA87366F2BF3CCAD006F2246 /* TeuMomento */,
 			);
 		};
 /* End PBXProject section */
@@ -395,17 +395,24 @@
 				DEVELOPMENT_TEAM = C73FLD543W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MacroChallenge5/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TeuMomento;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = amandaconde.MacroChallenge5;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.amandaconde.TeuMomento;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -422,17 +429,24 @@
 				DEVELOPMENT_TEAM = C73FLD543W;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MacroChallenge5/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TeuMomento;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = amandaconde.MacroChallenge5;
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.amandaconde.TeuMomento;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -451,7 +465,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BA8736872BF3CCAF006F2246 /* Build configuration list for PBXNativeTarget "MacroChallenge5" */ = {
+		BA8736872BF3CCAF006F2246 /* Build configuration list for PBXNativeTarget "TeuMomento" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BA8736882BF3CCAF006F2246 /* Debug */,
